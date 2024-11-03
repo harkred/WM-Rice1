@@ -43,15 +43,16 @@ exec --no-startup-id picom -b
 #Launches the polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-#Sets the volume limit to 100%
-exec_always --no-startup-id ~/.config/i3/volume_settings/volume_limiter.sh
+#Sets the theme for any gnome applications being used in i3wm
+exec_always --no-startup-id export GTK_THEME="Gruvbox-Dark-Soft"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+exec_always --no-startup-id ~/.config/i3/volume_settings/volume_limiter.sh #Sets the volume limit to 100%
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -206,13 +207,6 @@ mode "open" {
 }
 bindsym $mod+o mode "open"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# Bar config
-# bar {
-#     status_command i3status
-# }
-
 # i3 gaps and borders for a clean look
 gaps inner 12
 gaps outer 8
@@ -223,3 +217,6 @@ force_xinerama yes
 workspace_auto_back_and_forth yes
 tiling_drag modifier
 for_window [class="^.*"] border pixel 0 #makes the i3 title bar go woosh!!
+
+#Making windows floating
+for_window [class="Yad"] floating enable

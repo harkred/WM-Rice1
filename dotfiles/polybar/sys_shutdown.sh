@@ -1,7 +1,7 @@
 #!/bin/bash
 choice=$(yad --title="Shutdown or Restart" --text="Do you want to shutdown, restart, or close the menu?" \
        --button="Shutdown:0" --button="Restart:1" --button="Close:2" \
-       --width=300 --height=10 \
+       --width=500 --height=100 \
        --window-icon="system-shutdown" \
        --text-align=center \
        --borders=10 \
